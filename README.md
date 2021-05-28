@@ -20,6 +20,22 @@ Access the End point using the follwoing url
 
 http://localhost:8080/bmi/calculate
 
+
+PCF Deployment
+
+point to correspnsing org and space
+
+Starting app
+
+cf push bmi-calculator
+
+Stopping app
+
+cf stop
+
+
+
+
 **Sample Input:**
 
 [
