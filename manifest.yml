@@ -1,0 +1,5 @@
+---
+applications:
+  - name: bmi-calculator
+  - command: node server.js
+  - memory: 512M
