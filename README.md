@@ -13,7 +13,9 @@ Then just start the server with
 ```
 npm run start
 ```
+Running Test cases
 
+npm run test
 Access the End point using the follwoing url
 
 http://localhost:8080/bmi/calculate

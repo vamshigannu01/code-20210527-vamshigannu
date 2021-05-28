@@ -15,5 +15,5 @@ export interface IBmiInfo {
   gender?:string,
   bmiCategory?: string,
   healthRisk?: string;
-  bmi?: number,
+  bmi?: number
 }

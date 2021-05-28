@@ -2,10 +2,9 @@ import {Inject, Service} from 'typedi';
 import {IBmi, IBmiInfo, IBmiOutput} from "../interfaces/IBmi";
 
 @Service()
-export default // @ts-ignore
-class BMICalcService {
+export default class BMICalcService {
     numberOfOWPersons=0;
-    constructor(@Inject('logger') private logger) {
+    constructor() {
     }
 
     public async calculate(bmiInputs: IBmi[]): Promise<{ bmiOutput: IBmiOutput }> {
@@ -13,10 +12,7 @@ class BMICalcService {
             let bmiOutput: IBmiOutput = {};
             Array.prototype.forEach.call( bmiInputs,person=>{
                 let bmi = this.calculateBMI(person);
-                let bmiInfo: IBmiInfo = {};
-                bmiInfo.height = person.HeightCm;
-                bmiInfo.weight = person.WeightKg;
-                bmiInfo.gender = person.Gender;
+                let bmiInfo = this.createBMIInfo(person);
                 this.deriveBMICategoryAndHealthRisk(bmi, bmiInfo);
                 if (Array.isArray(bmiOutput.bmiInfo)) {
                     bmiOutput.bmiInfo.push(bmiInfo);
@@ -29,6 +25,14 @@ class BMICalcService {
         } catch (e) {
             throw e;
         }
+    }
+
+    public createBMIInfo(person) {
+        let bmiInfo: IBmiInfo = {};
+        bmiInfo.height = person.HeightCm;
+        bmiInfo.weight = person.WeightKg;
+        bmiInfo.gender = person.Gender;
+        return bmiInfo;
     }
 
     public calculateBMI(person) {
